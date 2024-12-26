@@ -8,11 +8,29 @@
 
   environment.systemPackages = with pkgs; [
     ntfs3g
+    mdadm # for managing RAID arrays in Linux
+    lvm2 # for LVM support
+
+    udiskie # for automatic mounting of USB drives
+
+    jmtpfs # for FTP with android phones
+
+    nfs-utils # for mounting nfs drive
+
+    xfsprogs # for xfs support
+
+    bcache-tools # for ssd caching
+
+    sysstat
+
+    smartmontools
   ];
 
-  services.devmon.enable = true;
-  services.gvfs.enable = true;
-  services.udisks2.enable = true;
+  services = {
+    devmon.enable = true; # an automatic device mounting daemon
+    gvfs.enable = true; # Git Virtual File System
+    udisks2.enable = true;
+  };
 
   fileSystems."/mnt/Videos" = {
     device = "//${secrets.nasIP}/Videos";
@@ -43,17 +61,17 @@
   };
 
 
-  fileSystems."/export/Calibre" = {
-    device = "/home/${settings.username}/Calibre";
-    options = [ "bind" ];
-  };
+  #fileSystems."/export/Calibre" = {
+  #  device = "/home/${settings.username}/Calibre";
+  #  options = [ "bind" ];
+  #};
 
 
-  services.nfs.server = {
-    enable = true;
-    exports = ''
-      /export            *(rw,fsid=0,no_subtree_check)
-      /export/Calibre    *(rw,nohide,insecure,no_subtree_check)
-    '';
-  };
+  #services.nfs.server = {
+  #  enable = true;
+  #  exports = ''
+  #    /export            *(rw,fsid=0,no_subtree_check)
+  #    /export/Calibre    *(rw,nohide,insecure,no_subtree_check)
+  #  '';
+  #};
 }

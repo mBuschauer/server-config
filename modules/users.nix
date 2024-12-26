@@ -1,4 +1,4 @@
-{ pkgs, settings, ... }:
+{ pkgs, settings, secrets, ... }:
 {
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${settings.username} = {
@@ -9,7 +9,7 @@
       lm_sensors # get temperature
       mprime # stress test 
     ];
-    openssh.authorizedKeys.keys = ${secrets.opensshAuthorizedKeys}
+    openssh.authorizedKeys.keys = secrets.opensshAuthorizedKeys;
   };
 
   users.users.michael = {

@@ -1,0 +1,7 @@
+{ settings, ... }:
+{
+  imports = [
+    ./home.nix
+  ];
+}
+

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, secrets, settings, ... }:
 {
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -26,19 +26,28 @@
 
     fastfetch
     ncdu
+
+    busybox
   ];
 
-  programs.git = {
-    enable = true;
-    package = pkgs.git;
-    config = [
-      {
-        user = {
-          name = "${secrets.gitUser}";
-          email = "${secrets.gitEmail}";
+  home-manager.users.${settings.username} = {
+    programs.git = {
+      enable = true;
+      userName = secrets.gitUser;
+      userEmail = secrets.gitEmail;
+      extraConfig = {
+        merge = {
+          "ours" = {
+            driver = true;
+          };
         };
-      }
-    ];
+      };
+      signing = {
+        gpgPath = "${pkgs.gnupg}/bin/gpg";
+        key = secrets.gpgFingerprint; # gpg --list-keys --fingerprint
+        signByDefault = true;
+      };
+    }; 
   };
 
   # for creating gpg keys
@@ -58,9 +67,7 @@
 
   services.openssh = {
     enable = true;
-    settings = {
-      X11Forwarding = true;
-    };
+    openFirewall = true;
   };
 
   virtualisation.docker.enable = true;
