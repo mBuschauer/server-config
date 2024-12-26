@@ -8,7 +8,11 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    nvix = {
+      # nixvim configuration
+      url = "github:niksingh710/nvix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, nixpkgs-stable, home-manager,... } @ inputs:
@@ -44,7 +48,7 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              users."${settings.username}".imports = [ ./home/default.nix ];
+              users."${settings.username}".imports = [ ./home/home.nix ];
               extraSpecialArgs = {
                 inherit inputs;
                 inherit settings;

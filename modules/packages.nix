@@ -31,6 +31,12 @@
   ];
 
   home-manager.users.${settings.username} = {
+    programs.gh = {
+      enable = true;
+      extensions = [ pkgs.gh-notify ];
+      package = pkgs.gh;
+    };
+
     programs.git = {
       enable = true;
       userName = secrets.gitUser;
