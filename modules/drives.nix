@@ -61,17 +61,17 @@
   };
 
 
-  #fileSystems."/export/Calibre" = {
-  #  device = "/home/${settings.username}/Calibre";
-  #  options = [ "bind" ];
-  #};
+  fileSystems."/export/Calibre" = {
+    device = "/home/${settings.username}/Calibre";
+    options = [ "bind" ];
+  };
 
 
-  #services.nfs.server = {
-  #  enable = true;
-  #  exports = ''
-  #    /export            *(rw,fsid=0,no_subtree_check)
-  #    /export/Calibre    *(rw,nohide,insecure,no_subtree_check)
-  #  '';
-  #};
+  services.nfs.server = {
+    enable = true;
+    exports = ''
+      /export            *(rw,fsid=0,no_subtree_check)
+      /export/Calibre    *(rw,nohide,insecure,no_subtree_check)
+    '';
+  };
 }

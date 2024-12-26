@@ -30,31 +30,25 @@
     busybox
   ];
 
-  home-manager.users.${settings.username} = {
-    programs.gh = {
-      enable = true;
-      extensions = [ pkgs.gh-notify ];
-      package = pkgs.gh;
-    };
-
-    programs.git = {
-      enable = true;
-      userName = secrets.gitUser;
-      userEmail = secrets.gitEmail;
-      extraConfig = {
-        merge = {
-          "ours" = {
-            driver = true;
-          };
-        };
-      };
-      signing = {
-        gpgPath = "${pkgs.gnupg}/bin/gpg";
-        key = secrets.gpgFingerprint; # gpg --list-keys --fingerprint
-        signByDefault = true;
-      };
-    }; 
-  };
+  #home-manager.users.${settings.username} = {
+  #  programs.git = {
+  #    enable = true;
+  #    userName = secrets.gitUser;
+  #    userEmail = secrets.gitEmail;
+  #    extraConfig = {
+  #      merge = {
+  #        "ours" = {
+  #          driver = true;
+  #        };
+  #      };
+  #    };
+  #    signing = {
+  #      gpgPath = "${pkgs.gnupg}/bin/gpg";
+  #      key = secrets.gpgFingerprint; # gpg --list-keys --fingerprint
+  #      signByDefault = true;
+  #    };
+  #  }; 
+  #};
 
   # for creating gpg keys
   services.pcscd.enable = true;
