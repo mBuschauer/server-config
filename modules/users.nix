@@ -4,10 +4,11 @@
   users.users.${settings.username} = {
     isNormalUser = true;
     description = "marco";
-    extraGroups = [ "networkmanager" "wheel" "docker" "sharedFolder" "storage" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "sharedFolder" "storage" "disk" ];
     packages = with pkgs; [
       lm_sensors # get temperature
       mprime # stress test 
+      cmd-wrapped # spotify wrapped for linux
     ];
     openssh.authorizedKeys.keys = secrets.opensshAuthorizedKeys;
   };
