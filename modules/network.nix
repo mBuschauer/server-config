@@ -25,8 +25,8 @@
   
   # networking.nftables.enable = true;
   services.resolved = {
-    enable = true;
-  };
+    enable = false; # will break network, do not enable (works with services.nfs for some reason)
+ };
   
   services.networkd-dispatcher = {
     enable = false;

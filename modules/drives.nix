@@ -30,7 +30,8 @@
     devmon.enable = true; # an automatic device mounting daemon
     gvfs.enable = true; # Git Virtual File System
     udisks2.enable = true;
-  };
+    rpcbind.enable = true;
+};
 
   fileSystems."/mnt/Videos" = {
     device = "//${secrets.nasIP}/Videos";
@@ -61,17 +62,17 @@
   };
 
 
-  fileSystems."/export/Calibre" = {
-    device = "/home/${settings.username}/Calibre";
-    options = [ "bind" ];
-  };
+#  fileSystems."/export/Calibre" = {
+#    device = "/home/${settings.username}/Calibre";
+#    options = [ "bind" ];
+#  };
 
 
   services.nfs.server = {
-    enable = true;
-    exports = ''
-      /export            *(rw,fsid=0,no_subtree_check)
-      /export/Calibre    *(rw,nohide,insecure,no_subtree_check)
-    '';
+#    enable = true;
+#    exports = ''
+#      /export            *(rw,fsid=0,no_subtree_check)
+#      /export/Calibre    *(rw,nohide,insecure,no_subtree_check)
+#    '';
   };
 }
