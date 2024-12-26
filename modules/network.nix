@@ -1,6 +1,6 @@
 { pkgs, settings, ... }:
 {
-  networking.hostName = "${settings.hostname}"; # Define your hostname.
+  networking.hostName = settings.hostname; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   systemd.services.NetworkManager-wait-online.enable = pkgs.lib.mkForce false;
 
