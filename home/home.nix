@@ -30,15 +30,6 @@
     '';
   };
 
-  xdg.userDirs = {
-    enable = true;
-    createDirectories = true;
-    pictures = "/home/${settings.username}/Pictures";
-    download = "/home/${settings.username}/Downloads";
-    documents = "/home/${settings.username}/Documents";
-    desktop = "/home/${settings.username}/Desktop";
-  };
-
   imports = [
     ./nvix.nix
   ];

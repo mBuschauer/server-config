@@ -41,4 +41,8 @@
 
   nix.optimise.automatic = true;
 
+    swapDevices = [ {
+    device = "/var/lib/swapfile";
+    size = 16*1024;
+  } ];
 }
