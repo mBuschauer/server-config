@@ -32,6 +32,6 @@
 
   imports = [
     ./nvix.nix
+    ./programs.nix
   ];
 }
-
