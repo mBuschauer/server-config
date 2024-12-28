@@ -10,9 +10,9 @@
   networking.firewall.allowedTCPPorts = [ 
     2049 # for nfs
   ];
+
   networking.firewall.allowedUDPPorts = [  ];
   networking.firewall.enable = false;
-  networking.firewall.checkReversePath = "loose";
 
   services.tailscale = {
     enable = true;
@@ -24,9 +24,9 @@
   };
   
   # networking.nftables.enable = true;
-  services.resolved = {
-    enable = false; # will break network, do not enable (works with services.nfs for some reason)
- };
+#  services.resolved = {
+#    enable = false; # will break network, do not enable (works with services.nfs for some reason)
+# };
   
   services.networkd-dispatcher = {
     enable = false;
