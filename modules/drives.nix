@@ -33,6 +33,10 @@
     gvfs.enable = true; # Git Virtual File System
     udisks2.enable = true;
     rpcbind.enable = true;
+    smartd = {
+      enable = false;
+      autodetect = false;
+    };
   };
 
   boot.swraid = {
@@ -74,12 +78,15 @@
   };
 
   fileSystems."/mnt/raid" = {
-    device = "/dev/disk/by-uuid/0755c838-aaa3-458f-b716-2d535c5b6e52";
+    device = "/dev/md127";
     fsType = "xfs";
     options = [
       "defaults"
-
+      "nofail"
+      "x-systemd.requires=mdadm-last-resort@md127.service"
       "uid=1000"
+      "gid=1000"
+      "degraded"
       "users"
     ];
   };
@@ -90,12 +97,12 @@
   };
 
   services.nfs.server = {
-    enable = true;
+    enable = false;
     exports = ''
       /export            *(rw,fsid=0,no_subtree_check)
       /export/Calibre    *(rw,nohide,insecure,no_subtree_check)
-
-      /mnt/raid          *(rw,nohide,insecure,no_subtree_check)
     '';
+    #/mnt/raid          *(rw,nohide,insecure,no_subtree_check)
+    # '';
   };
 }
