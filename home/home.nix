@@ -7,7 +7,7 @@
     homeDirectory = "/home/${settings.username}";
     stateVersion = "24.05";
     sessionVariables = {
-      EDITOR = "vim";
+      EDITOR = "lvim";
       HISTTIMEFORMAT = "%d/%m/%y %T "; # for cmd-wrapped to work
       HISTFILE = "/home/${settings.username}/.bash_history";
     };
@@ -31,7 +31,6 @@
   };
 
   imports = [
-    ./nvix.nix
     ./programs.nix
   ];
 }

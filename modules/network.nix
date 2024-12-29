@@ -7,12 +7,14 @@
   # Enable networking
   networking.networkmanager.enable = true; 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 
-    2049 # for nfs
-  ];
-
-  networking.firewall.allowedUDPPorts = [  ];
-  networking.firewall.enable = false;
+  networking.firewall = {
+    enable = true;
+    allowPing = true;
+    allowedTCPPorts = [ 
+      2049 # for nfs
+    ];
+    allowedUDPPorts = [ ];
+  };
 
   services.tailscale = {
     enable = true;
