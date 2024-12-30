@@ -57,7 +57,7 @@
       autodetect = true;
     };
     samba = {
-      enable = false;
+      enable = true;
       openFirewall = true;
       settings = {
         global = {
@@ -83,7 +83,7 @@
       };
     };
     samba-wsdd = {
-      enable = false;
+      enable = true;
       openFirewall = true;
     };
   };
@@ -94,9 +94,8 @@
       PROGRAM ${pkgs.writeShellScript "save_to_log" ''
         echo \"$(date): $@\" >> /var/log/mdadm-events.log
       ''}
+      ARRAY /dev/md/server-2025:0 metadata=1.2 spares=1 UUID=895c1bcb:4feecbec:8a7767d9:a73a0e1a
     ";
-    #  ARRAY /dev/md/server-2025:0 metadata=1.2 spares=1 UUID=26ccd996:c70a2cb6:60bef53c:2e7ddf84
-    #";
   };
 
   fileSystems."/mnt/Videos" = {
@@ -127,27 +126,29 @@
     ];
   };
 
-  #fileSystems."/mnt/raid" = {
-  #  device = "/dev/disk/by-uuid/0755c838-aaa3-458f-b716-2d535c5b6e52";
-  #  fsType = "xfs";
-  #  options = [
-  #    "defaults"
-  #    "nofail"
-  #    "users"
-  #    # "x-systemd.requires=mdadm-last-resort@md127.service"
-  #  ];
-  #};
+  fileSystems."/mnt/raid" = {
+    device = "/dev/disk/by-uuid/2005e9c4-dec5-4a65-8fc2-1ca229897d4d";
+    fsType = "xfs";
+    options = [
+      "defaults"
+      "nofail"
+      "users"
+    ];
+  };
 
-  #fileSystems."/export/raid" = {
-  #  device = "/mnt/raid";
-  #  options = [ "bind" "nofail" ];
-  #};
+  fileSystems."/export/raid" = {
+    device = "/mnt/raid";
+    options = [ 
+      "bind" 
+      "nofail" 
+    ];
+  };
 
-  #services.nfs.server = {
-  #  enable = true;
-  #  exports = ''
-  #    /export            *(rw,fsid=0,no_subtree_check)
-  #    /export/raid       *(rw,nohide,insecure,no_subtree_check)
-  #  '';
-  #};
+  services.nfs.server = {
+    enable = true;
+    exports = ''
+      /export            *(rw,fsid=0,no_subtree_check)
+      /export/raid       *(rw,nohide,insecure,no_subtree_check)
+    '';
+  };
 }
