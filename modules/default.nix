@@ -2,6 +2,7 @@
 {
   imports = [
     ./admin.nix
+    ./cron.nix
     ./drives.nix
     ./fonts.nix
     ./network.nix
