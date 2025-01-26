@@ -1,6 +1,6 @@
 { ... }:
 {
-{
+
   systemd.timers."rsync-weekly" = {
     wantedBy = [ "timers.target" ];
     timerConfig = {
@@ -19,7 +19,7 @@
       # User = "root";             # Run as root (adjust if needed)
     };
   };
-}
+
 
 services.cron = {
     enable = false;
