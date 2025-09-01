@@ -65,7 +65,7 @@
           "server string" = "server-2025";
           "netbios name" = "server-2025";
           "security" = "user";
-          "hosts allow" = "192.168.0. 127.0.0.1 localhost";
+          "hosts allow" = "192.168.0. 127.0.0.1 localhost 100.99.221.11";
           "hosts deny" = "0.0.0.0/0";
           "guest account" = "nobody";
           "map to guest" = "bad user";
@@ -94,7 +94,7 @@
       PROGRAM ${pkgs.writeShellScript "save_to_log" ''
         echo \"$(date): $@\" >> /var/log/mdadm-events.log
       ''}
-      ARRAY /dev/md/server-2025:0 metadata=1.2 spares=1 UUID=895c1bcb:4feecbec:8a7767d9:a73a0e1a
+      ARRAY /dev/md/server-2025:0 metadata=1.2 spares=1 UUID=895c1bcb:4feecbec:8a7767d9:a73a0e1a name=server-2025:0
     ";
   };
 
@@ -127,6 +127,7 @@
   };
 
   fileSystems."/mnt/raid" = {
+    # device = "/dev/md/server-2025:0";
     device = "/dev/disk/by-uuid/2005e9c4-dec5-4a65-8fc2-1ca229897d4d";
     fsType = "xfs";
     options = [

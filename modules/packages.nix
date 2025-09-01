@@ -24,6 +24,8 @@
     kitty # terminal emulator I usually use
     wezterm # switched to wezterm recently
 
+    nsz # nothing
+
     fastfetch
     ncdu
 
@@ -82,7 +84,12 @@
   services.openssh = {
     enable = true;
     openFirewall = true;
+    settings.X11Forwarding = true;
   };
 
-  virtualisation.docker.enable = true;
+  virtualisation.docker = {
+    enable = true;
+    # package = pkgs.docker_28;
+    liveRestore = true;
+  };
 }

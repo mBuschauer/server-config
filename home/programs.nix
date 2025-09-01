@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   programs.lsd = {
     enable = true;
@@ -42,4 +42,5 @@
       header = false;
     };
   };
+
 }

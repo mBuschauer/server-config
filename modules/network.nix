@@ -19,6 +19,7 @@
   services.tailscale = {
     enable = true;
     useRoutingFeatures = "both";
+    # sudo tailscale up --advertise-routes=192.168.0.8/32,192.168.0.166/32,192.168.0.5/32 --advertise-exit-node --ssh
   };
 
   boot.kernel.sysctl = {
