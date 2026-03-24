@@ -65,7 +65,7 @@
           "server string" = "server-2025";
           "netbios name" = "server-2025";
           "security" = "user";
-          "hosts allow" = "192.168.0. 127.0.0.1 localhost 100.99.221.11";
+          "hosts allow" = "192.168.0. 127.0.0.1 localhost 100.64.0.0/10";
           "hosts deny" = "0.0.0.0/0";
           "guest account" = "nobody";
           "map to guest" = "bad user";

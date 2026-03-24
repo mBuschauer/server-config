@@ -3,18 +3,22 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    lazyvim.url = "github:pfassina/lazyvim-nix";
   };
 
-  outputs = { self, 
-    nixpkgs, 
-    nixpkgs-stable, 
-    home-manager,
-    ... } @ inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nixpkgs-stable,
+      home-manager,
+      ...
+    }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -35,7 +39,8 @@
           inherit secrets;
         };
         modules = [
-          ({ config, pkgs, ... }:
+          (
+            { config, pkgs, ... }:
             {
               nixpkgs.overlays = [ overlay-stable ];
             }
@@ -47,7 +52,7 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              users."${settings.username}".imports = [ ./home/home.nix ];
+              users."${settings.username}".imports = [ ./home/home.nix inputs.lazyvim.homeManagerModules.default ];
               extraSpecialArgs = {
                 inherit inputs;
                 inherit settings;

@@ -36,7 +36,7 @@
         sudo nixos-rebuild switch
       )
     '';
-    disk-analysis = "sudo ncdu / --exclude=/mnt";
+    disk-analysis = "sudo ncdu / --exclude=/mnt --exclude=/export";
     neofetch = "fastfetch";
   };
 }

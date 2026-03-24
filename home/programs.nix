@@ -43,4 +43,22 @@
     };
   };
 
+  programs.lazyvim = {
+    enable = true;
+    extras = {
+      lang.nix.enable = true;
+      lang.python = {
+        enable = true;
+        installDependencies = true;
+        installRuntimeDependencies = true;
+      };
+      lang.docker.enable = true;
+      lang.git.enable = true;
+    };
+    extraPackages = with pkgs; [
+      nixd
+      alejandra
+    ];
+  };
+
 }

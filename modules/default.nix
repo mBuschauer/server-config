@@ -11,5 +11,7 @@
     ./packages.nix
     ./services.nix
     ./users.nix
+
+    ./docker
   ];
 }

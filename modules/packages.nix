@@ -8,7 +8,7 @@
     wget
     git
 
-    lunarvim # better vim
+    # lunarvim # better vim
     bottom # better top
 
     yazi # file viewer
@@ -30,6 +30,9 @@
     ncdu
 
     busybox
+
+    lazygit
+    nixfmt
   ];
 
   home-manager.users.${settings.username} = {
@@ -86,10 +89,6 @@
     openFirewall = true;
     settings.X11Forwarding = true;
   };
-
-  virtualisation.docker = {
-    enable = true;
-    # package = pkgs.docker_28;
-    liveRestore = true;
-  };
+  programs.nix-ld.enable = true;
+  # services.openvscode-server.enable = true;
 }
