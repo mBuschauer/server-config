@@ -139,6 +139,7 @@
 
   fileSystems."/export/raid" = {
     device = "/mnt/raid";
+    fsType = "none";
     options = [ 
       "bind" 
       "nofail" 

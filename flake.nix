@@ -9,6 +9,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     lazyvim.url = "github:pfassina/lazyvim-nix";
+    cbr2cbz.url = "github:mbuschauer/cbr2cbz";
   };
 
   outputs =
@@ -52,7 +53,10 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              users."${settings.username}".imports = [ ./home/home.nix inputs.lazyvim.homeManagerModules.default ];
+              users."${settings.username}".imports = [
+                ./home/home.nix
+                inputs.lazyvim.homeManagerModules.default
+              ];
               extraSpecialArgs = {
                 inherit inputs;
                 inherit settings;

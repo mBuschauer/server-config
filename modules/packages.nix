@@ -1,46 +1,54 @@
-{ pkgs, secrets, settings, ... }:
+{
+  pkgs,
+  secrets,
+  settings,
+  inputs,
+  ...
+}:
 {
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  environment.systemPackages = with pkgs; [
-    nano
-    wget
-    git
+  environment.systemPackages =
+    with pkgs;
+    [
+      nano
+      wget
+      git
 
-    # lunarvim # better vim
-    bottom # better top
+      # lunarvim # better vim
+      bottom # better top
 
-    yazi # file viewer
-    lsd # better ls
-    bat # better cat 
-    trashy # alternative to rm
-    zip # zip files
-    unzip # unzip files
+      yazi # file viewer
+      lsd # better ls
+      bat # better cat
+      trashy # alternative to rm
+      zip # zip files
+      unzip # unzip files
 
-    nil
-    nixpkgs-fmt
+      nil
+      nixpkgs-fmt
 
-    kitty # terminal emulator I usually use
-    wezterm # switched to wezterm recently
+      nsz # nothing
 
-    nsz # nothing
+      fastfetch
+      ncdu
 
-    fastfetch
-    ncdu
+      busybox
 
-    busybox
-
-    lazygit
-    nixfmt
-  ];
+      lazygit
+      nixfmt
+    ]
+    ++ [
+      inputs.cbr2cbz.packages.${pkgs.stdenv.hostPlatform.system}.default
+    ];
 
   home-manager.users.${settings.username} = {
     programs.gh = {
       enable = true;
       extensions = [ pkgs.gh-notify ];
       package = pkgs.gh;
-    }; 
+    };
   };
 
   programs.git = {
